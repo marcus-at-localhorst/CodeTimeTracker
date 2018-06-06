@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 	// get status archive.
 	let reqStts = new XMLHttpRequest();
-	reqStts.open('get', 'status.txt', false);
+	reqStts.open('get', '../User/CodeTimeTracker/status.txt', false);
 
 	reqStts.onload = function(e){
 		stts = e.target.response;
