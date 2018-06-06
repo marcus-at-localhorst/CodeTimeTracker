@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 	// get data archive.
 	let reqData = new XMLHttpRequest();
-	reqData.open('get', 'data.txt', false);
+	reqData.open('get', '../User/CodeTimeTracker/data.txt', false);
 
 	reqData.onload = function(e){
 		data = e.target.response;
@@ -39,11 +39,17 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 	// transform txt in object to make the graphics
 	let dataObject = [];
-	let dataTemp = data.split('data');
 
-	for(let i = 1; i < dataTemp.length; i++) {
+	// Keep backward combatibility
+	// remove preceding 'data' split string and split by linebreak
+	let dataTemp = data.replace(/data{/g,'{').split("\n");
 
-		dataObject.push(JSON.parse(dataTemp[i]));
+	for(let i = 0; i < dataTemp.length; i++) {
+
+		if(dataTemp[i] != ""){
+			dataObject.push(JSON.parse(dataTemp[i]));
+		}
+
 	}
 
 	// accumulators of data
